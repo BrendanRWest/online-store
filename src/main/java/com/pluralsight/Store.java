@@ -32,10 +32,10 @@ public class Store {
         int choice = -1;
         while (choice != 3) {
             System.out.println("\nWelcome to the Online Store!");
-            System.out.println("1. Show Products");
+            System.out.println("\n1. Show Products");
             System.out.println("2. Show Cart");
             System.out.println("3. Exit");
-            System.out.print("Your choice: ");
+            System.out.print("\nYour choice: ");
 
             if (!scanner.hasNextInt()) {
                 System.out.println("Please enter 1, 2, or 3.");
@@ -96,42 +96,47 @@ public class Store {
             System.out.println(product);
         }
 
-        System.out.println("\n1.) Add product to your cart");
-        System.out.println("2.) Exit to home page");
-        System.out.print("\nPlease select an option (1 or 2): ");
+        boolean condition2 = false;
+        while(!condition2) {
+            System.out.println("\n1.) Add product to your cart");
+            System.out.println("2.) Exit to home page");
+            System.out.print("\nPlease select an option (1 or 2): ");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        String choice2;
-        boolean condition = false;
+            String choice2;
+            boolean condition = false;
 
-        if(choice == 1){
-            condition = true;
-        }
-
-        while(condition) {
-            System.out.print("\nPlease enter the sku for the item you'd like to buy: ");
-            String productSku = scanner.nextLine();
-
-            boolean itemFound = false;
-            for (Product product : inventory) {
-                if (product.getSku().equalsIgnoreCase(productSku)) {
-                    Product matchedProduct = product;
-                    cart.add(matchedProduct);
-                    System.out.printf("%n%s added to your cart.",
-                            matchedProduct.getProductName());
-                    itemFound = true;
-                    break;
-                }
+            if(choice == 1){
+                condition = true;
             }
-            if(!itemFound) {
-                System.out.println("Product not found.");
-            } else {
-                System.out.print("\n\nAdd another item (y/n): ");
-                choice2 = scanner.nextLine();
-                if (choice2.equalsIgnoreCase("n")){
+
+            while(condition) {
+                System.out.print("\nPlease enter the sku for the item you'd like to buy: ");
+                String productSku = scanner.nextLine();
+
+                boolean itemFound = false;
+                for (Product product : inventory) {
+                    if (product.getSku().equalsIgnoreCase(productSku)) {
+                        Product matchedProduct = product;
+                        cart.add(matchedProduct);
+                        System.out.printf("%n%s added to your cart.",
+                                matchedProduct.getProductName());
+                        itemFound = true;
+                        break;
+                    }
+                }
+                if(!itemFound) {
+                    System.out.println("Product not found.");
                     condition = false;
+                } else {
+                    System.out.print("\n\nAdd another item (y/n): ");
+                    choice2 = scanner.nextLine();
+                    if (choice2.equalsIgnoreCase("n")){
+                        condition = false;
+                        condition2 = true;
+                    }
                 }
             }
         }
@@ -149,6 +154,24 @@ public class Store {
         //   • compute the total cost
         //   • ask the user whether to check out (C) or return (X)
         //   • if C, call checkOut(cart, totalAmount, scanner)
+
+        System.out.println();
+        double totalAmount = 0;
+        String choice3;
+
+        for (Product product : cart){
+            System.out.println(product);
+            totalAmount += product.getPrice();
+        }
+        System.out.println("\nYour cart currently costs: $" + totalAmount);
+        System.out.println("\n Check out (C) or return (X): ");
+
+        choice3 = scanner.nextLine();
+
+        if(choice3.equalsIgnoreCase("C")){
+            checkOut(cart, totalAmount, scanner);
+        }
+
     }
 
     /**
@@ -162,6 +185,7 @@ public class Store {
                                 double totalAmount,
                                 Scanner scanner) {
         // TODO: implement steps listed above
+
     }
 
     /**
