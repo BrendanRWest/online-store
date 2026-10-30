@@ -2,10 +2,10 @@ package com.pluralsight;
 
 public class Product {
 
-    private static String sku;
-    private static String productName;
-    private static double price;
-    private static String department;
+    private String sku;
+    private String productName;
+    private double price;
+    private String department;
 
     public Product(String sku, String productName, double price, String department) {
         this.sku = sku;
@@ -14,40 +14,43 @@ public class Product {
         this.department = department;
     }
 
-    public static String getSku() {
+    public String getSku() {
         return sku;
     }
 
-    public static void setSku(String sku) {
-        Product.sku = sku;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
-    public static String getProductName() {
+    public String getProductName() {
         return productName;
     }
 
-    public static void setProductName(String productName) {
-        Product.productName = productName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public static String getDepartment() {
-        return department;
-    }
-
-    public static void setDepartment(String department) {
-        Product.department = department;
-    }
-
-    public static double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public static void setPrice(double price) {
-        Product.price = price;
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     @Override
     public String toString() {
-        return "Product{}";
+        return "SKU: " + sku +
+                " | Name: " + productName +
+                " | Price: $" + price +
+                " | Department: " + department;
     }
 }

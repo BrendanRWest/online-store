@@ -66,7 +66,7 @@ public class Store {
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-
+            reader.readLine();
             String csvLine;
 
             while((csvLine = reader.readLine()) != null){
@@ -92,6 +92,49 @@ public class Store {
     public static void displayProducts(ArrayList<Product> inventory,
                                        ArrayList<Product> cart,
                                        Scanner scanner) {
+        for (Product product : inventory) {
+            System.out.println(product);
+        }
+
+        System.out.println("\n1.) Add product to your cart");
+        System.out.println("2.) Exit to home page");
+        System.out.print("\nPlease select an option (1 or 2): ");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        String choice2;
+        boolean condition = false;
+
+        if(choice == 1){
+            condition = true;
+        }
+
+        while(condition) {
+            System.out.print("\nPlease enter the sku for the item you'd like to buy: ");
+            String productSku = scanner.nextLine();
+
+            boolean itemFound = false;
+            for (Product product : inventory) {
+                if (product.getSku().equalsIgnoreCase(productSku)) {
+                    Product matchedProduct = product;
+                    cart.add(matchedProduct);
+                    System.out.printf("%n%s added to your cart.",
+                            matchedProduct.getProductName());
+                    itemFound = true;
+                    break;
+                }
+            }
+            if(!itemFound) {
+                System.out.println("Product not found.");
+            } else {
+                System.out.print("\n\nAdd another item (y/n): ");
+                choice2 = scanner.nextLine();
+                if (choice2.equalsIgnoreCase("n")){
+                    condition = false;
+                }
+            }
+        }
         // TODO: show each product (id, name, price),
         //       prompt for an id, find that product, add to cart
     }
