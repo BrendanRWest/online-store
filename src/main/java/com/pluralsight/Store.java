@@ -164,7 +164,7 @@ public class Store {
             totalAmount += product.getPrice();
         }
         System.out.println("\nYour cart currently costs: $" + totalAmount);
-        System.out.println("\n Check out (C) or return (X): ");
+        System.out.print("\nCheck out (C) or return (X): ");
 
         choice3 = scanner.nextLine();
 
@@ -185,7 +185,31 @@ public class Store {
                                 double totalAmount,
                                 Scanner scanner) {
         // TODO: implement steps listed above
+        boolean enoughCash = false;
+        String choice4;
+        Double cash;
 
+            System.out.println("\nCart total: $" + totalAmount);
+            System.out.print("Continue with purchase? (y/n): ");
+
+            choice4 = scanner.nextLine();
+            if(choice4.equalsIgnoreCase("y")){
+                while(!enoughCash){
+                    System.out.print("\nHow much cash are you paying with? ");
+                    cash = scanner.nextDouble();
+                    if(cash < totalAmount){
+                        System.out.println("\nThat isn't enough to cover the cost of your cart.");
+                    } else {
+                        System.out.printf("%n$%.2f is your change.", (cash - totalAmount));
+                        System.out.println("\n\nYou purchased: \n");
+                        for(Product product : cart){
+                            System.out.println(product.getProductName() + " | $" + product.getPrice()+ "\n");
+                        }
+                        cart.clear();
+                        enoughCash = true;
+                    }
+                }
+            }
     }
 
     /**
