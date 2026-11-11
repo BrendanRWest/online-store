@@ -1,4 +1,4 @@
-# Project Title
+# Online Store
 
 <!-- HOW TO USE THIS TEMPLATE
      Save it as README.md at the root of your project, next to pom.xml. Replace every comment like this one
@@ -11,6 +11,9 @@
 
 ## Description of the Project
 
+This application allows the user to view a list of products. They then should be able to add products to their shopping
+cart by sku. Finally, they should be able to view their cart and pay for everything by typing in the amount of cash
+that they're providing.
 <!-- Three to five sentences. What the application does, who uses it, what problem it solves.
      Write it for someone who has never seen the workbook: a recruiter, a classmate, you in six months. -->
 
@@ -23,9 +26,10 @@
      - Shows every product in the store
      - Searches products by name (bonus) -->
 
--
--
--
+- Shows all of the products
+- Allows users to add a product to their shopping cart
+- Users can view all of the products in their shopping cart
+- Users can pay for everything in their cart
 
 ## User Stories
 
@@ -48,8 +52,8 @@
 1. Clone this repository, or download it as a zip and unzip it.
 2. In IntelliJ: File > Open, pick the project folder (the one that holds `pom.xml`), press Open.
 3. Wait for IntelliJ to finish indexing (progress bar at the bottom).
-4. Open `src/main/java/com/pluralsight/YourMainClassName.java`. <!-- replace YourMainClassName with the class that has main -->
-5. Right-click inside the file and choose Run 'YourMainClassName.main()'.
+4. Open `src/main/java/com/pluralsight/Store.java` <!-- replace YourMainClassName with the class that has main -->
+5. Right-click inside the file and choose Run 'Store.main()'.
 
 ### Data and configuration
 
@@ -60,7 +64,7 @@
      - `inventory.csv` sits at the project root, next to `pom.xml`. The program reads it at start.
      - `logs.txt` is created by the program at the project root on the first run. -->
 
--
+- products.csv sits at the project root, next to pom.xml. The program reads it at the start.
 
 ## Technologies Used
 
@@ -83,9 +87,9 @@
      Optional GIF: LICEcap (free, Windows and Mac, <https://www.cockos.com/licecap/>) records a region of the
      screen straight to a .gif. Keep it under 10 seconds and under 10 MB, save it into `images`. -->
 
-![Main menu](images/menu.png)
+![menu.png](images/menu.png)
 
-![One feature in action](images/feature.png)
+![feature.png](images/feature.png)
 
 ## A piece of code I am proud of
 
@@ -94,31 +98,43 @@
      demo day and what you talk about in an interview. -->
 
 ```java
-
+while(!enoughCash){
+                System.out.print("\nHow much cash are you paying with? ");
+                cash = scanner.nextDouble();
+                if(cash < totalAmount){
+                    System.out.println("\nThat isn't enough to cover the cost of your cart.");
+                } else {
+                    System.out.printf("%n$%.2f is your change.", (cash - totalAmount));
+                    System.out.println("\n\nYou purchased: \n");
+                    for(Product product : cart){
+                        System.out.println(product.getProductName() + " for $" + product.getPrice()+ "\n");
+                    }
+                    cart.clear();
+                    enoughCash = true;
+                    System.out.println("Thank you for your patronage!\n");
 ```
 
 ## Future Work
 
 <!-- What you would add or fix next, one bullet each. Unfinished bonuses belong here. -->
 
--
--
+- I would add quantity numbers for items in the cart
+- I would add some personalization
 
 ## Resources
 
 <!-- What helped you: the workbook, the week's hub pages, a tutorial, a documentation page. Real links. -->
 
 - Java YearUp Fall 2026 hub: <https://raymaroun.github.io/yearup-java-fall2026/>
--
 
 ## Author
 
 <!-- Your name and, if you like, your GitHub profile link. For a team workshop, one line per person with what each one built. -->
 
-- **Your Name**
+- **Brendan West**
 
 ## Thanks
 
 <!-- Optional. The people who helped: the instructor, a classmate who debugged with you, a mentor. -->
 
-- Thank you to ... for ...
+- Thank you to Raymond
