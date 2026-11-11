@@ -39,6 +39,8 @@ that they're providing.
 
 - As a user, I want to be able to display all products so that I can see what's available for me to purchase
 - Add a user, I want to be able to add a product to my shopping cart so that I can eventually purchase it
+- As a user, I want to be able to view my cart with all of my products and the total price so that I can view everything before I actually buy it.
+- As a user, I want to be able to check out to purchase everything in my cart
 
 ## Setup
 
@@ -120,6 +122,7 @@ while(!enoughCash){
 
 - I would add quantity numbers for items in the cart
 - I would add some personalization
+- Create a receipt.csv and add purchases to it
 
 ## Resources
 
