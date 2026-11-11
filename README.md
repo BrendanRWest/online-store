@@ -37,8 +37,8 @@ that they're providing.
      As a [type of user], I want [some goal] so that [some reason].
      Same text as the cards on your GitHub project board. -->
 
-- As a ..., I want ..., so that ...
-- As a ..., I want ..., so that ...
+- As a user, I want to be able to display all products so that I can see what's available for me to purchase
+- Add a user, I want to be able to add a product to my shopping cart so that I can eventually purchase it
 
 ## Setup
 
